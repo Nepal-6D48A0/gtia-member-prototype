@@ -1,65 +1,67 @@
-import Head from 'next/head'
-import styles from '../styles/Home.module.css'
+import Head from 'next/head';
+import { Col, Row } from "react-bootstrap";
+import CustomMenu from '../components/navbar';
 
-export default function Home() {
-  return (
-    <div className={styles.container}>
-      <Head>
-        <title>Create Next App</title>
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
+import ProfileCard from '../components/profile-card';
+import UpcomingEvents from '../components/upcoming-events';
+import styles from '../styles/Home.module.css';
 
-      <main className={styles.main}>
-        <h1 className={styles.title}>
-          Welcome to <a href="https://nextjs.org">Next.js!</a>
-        </h1>
-
-        <p className={styles.description}>
-          Get started by editing{' '}
-          <code className={styles.code}>pages/index.js</code>
-        </p>
-
-        <div className={styles.grid}>
-          <a href="https://nextjs.org/docs" className={styles.card}>
-            <h3>Documentation &rarr;</h3>
-            <p>Find in-depth information about Next.js features and API.</p>
-          </a>
-
-          <a href="https://nextjs.org/learn" className={styles.card}>
-            <h3>Learn &rarr;</h3>
-            <p>Learn about Next.js in an interactive course with quizzes!</p>
-          </a>
-
-          <a
-            href="https://github.com/vercel/next.js/tree/master/examples"
-            className={styles.card}
-          >
-            <h3>Examples &rarr;</h3>
-            <p>Discover and deploy boilerplate example Next.js projects.</p>
-          </a>
-
-          <a
-            href="https://vercel.com/import?filter=next.js&utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-            className={styles.card}
-          >
-            <h3>Deploy &rarr;</h3>
-            <p>
-              Instantly deploy your Next.js site to a public URL with Vercel.
-            </p>
-          </a>
-        </div>
-      </main>
-
-      <footer className={styles.footer}>
-        <a
-          href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Powered by{' '}
-          <img src="/vercel.svg" alt="Vercel Logo" className={styles.logo} />
-        </a>
-      </footer>
+const Home = ({ userProfile, points, upcomingEvents }) => (
+  <div className={styles.container}>
+    <div className={styles.wave}>
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="#000b76" fill-opacity="0.78" d="M0,256L48,266.7C96,277,192,299,288,304C384,309,480,299,576,282.7C672,267,768,245,864,234.7C960,224,1056,224,1152,234.7C1248,245,1344,267,1392,277.3L1440,288L1440,0L1392,0C1344,0,1248,0,1152,0C1056,0,960,0,864,0C768,0,672,0,576,0C480,0,384,0,288,0C192,0,96,0,48,0L0,0Z"></path></svg>
     </div>
-  )
+    <Head>
+      <title>Home | GTIA Member</title>
+      <link rel="icon" href="/favicon.ico" />
+    </Head>
+
+    <CustomMenu />
+    <main className="my-5 px-5">
+      <Row>
+        <Col md={3} className="mb-4">
+          <ProfileCard userProfile={userProfile} points={points} />
+        </Col>
+        <Col md={9} className="mb-4">
+          <UpcomingEvents events={upcomingEvents} />
+        </Col>
+      </Row>
+
+    </main>
+  </div>
+);
+
+export const getStaticProps = async () => {
+  const userProfile = {
+    name: "George P. Burdell",
+    committee: "Internal",
+    profilePicture: "https://pbs.twimg.com/profile_images/849268299431063552/gRLA63TN.jpg"
+  };
+
+  const points = {
+    workPoints: 10,
+    socialPoints: 2,
+  };
+
+  const committees = ["Internal", "External", "Outreach", "Marketing", "Finance"];
+
+  const upcomingEvents = [1, 2, 3, 4, 5].map(x => {
+    return {
+      id: x,
+      title: `Event Title ${x}`,
+      date: `08/20/2020`,
+      time: `6:00 pm`,
+      committee: committees[Math.floor(Math.random() * committees.length)]
+    }
+  });
+
+  return {
+    props: {
+      userProfile,
+      points,
+      upcomingEvents,
+    }
+  }
 }
+
+export default Home;

@@ -1,0 +1,10 @@
+img.cardImage {
+    border-radius: 50%;
+    object-fit: cover;
+    width: 75%;
+    margin: 10px auto;
+}
+
+.profileBody {
+    text-align: center;
+}
