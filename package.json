@@ -5,8 +5,8 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start",
-    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install && npm run build"
+    "start": "next start -p $PORT",
+    "heroku-postbuild": "npm install && npm run build"
   },
   "dependencies": {
     "@trendmicro/react-sidenav": "^0.5.0",
