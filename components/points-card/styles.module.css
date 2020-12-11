@@ -1,0 +1,13 @@
+.cardTitle {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #ffb400;
+}
+
+.eventContainer {
+    margin: 15px 0;
+    border-radius: 5px;    
+    box-shadow:  0 0 17px 3px rgba(184,184,184,.5);
+    padding: 20px;
+    margin: 20px 0;
+}
