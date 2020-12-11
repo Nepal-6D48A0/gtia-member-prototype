@@ -7,6 +7,7 @@ import Layout from './_layout';
 
 const Home = ({ userProfile, points, upcomingEvents }) => (
   <Layout pageTitle="Home">
+    <h1 className="display-1 mb-3">Home</h1>
     <Row>
       <Col md={3} className="mb-4">
         <ProfileCard userProfile={userProfile} points={points} />

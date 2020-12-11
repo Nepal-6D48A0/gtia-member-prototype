@@ -1,5 +1,6 @@
 import React from "react";
 import PropTypes from 'prop-types';
+import Link from "next/link";
 import { Row, Col } from "react-bootstrap";
 import { Card, CardTitle, CardBody, CardSubtitle, CardImg, Badge, Button } from "shards-react";
 import styles from './styles.module.css';
@@ -24,7 +25,9 @@ const ProfileCard = ({ userProfile, points }) => (
                     <h4>{points.socialPoints}</h4>
                 </Col>
             </Row>
-            <Button theme="warning">Submit Points</Button>
+            <Link href="/points">
+                <Button theme="warning">Submit Points</Button>
+            </Link>
         </CardBody>
     </Card>
 );

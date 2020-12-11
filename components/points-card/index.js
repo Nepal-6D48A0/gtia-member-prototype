@@ -1,8 +1,8 @@
 import React from "react";
 import PropTypes from 'prop-types';
-import { Row, Col } from "react-bootstrap";
 import { Card, CardTitle, CardBody, Badge, Button } from "shards-react";
 import ReactStars from "react-stars";
+
 import styles from './styles.module.css';
 import PointEvent from "./pointEvent";
 
