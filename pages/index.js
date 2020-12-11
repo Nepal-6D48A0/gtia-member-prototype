@@ -1,6 +1,7 @@
 import Head from 'next/head';
 import { Col, Row } from "react-bootstrap";
 import CustomMenu from '../components/navbar';
+import { getSocialPoints, getUpcomingEvents, getWorkPoints, getUserProfile } from '../utils/seed';
 
 import ProfileCard from '../components/profile-card';
 import UpcomingEvents from '../components/upcoming-events';
@@ -32,28 +33,14 @@ const Home = ({ userProfile, points, upcomingEvents }) => (
 );
 
 export const getStaticProps = async () => {
-  const userProfile = {
-    name: "George P. Burdell",
-    committee: "Internal",
-    profilePicture: "https://pbs.twimg.com/profile_images/849268299431063552/gRLA63TN.jpg"
-  };
+  const userProfile = getUserProfile();
 
   const points = {
-    workPoints: 10,
-    socialPoints: 2,
+    workPoints: getWorkPoints().length,
+    socialPoints: getSocialPoints().length,
   };
 
-  const committees = ["Internal", "External", "Outreach", "Marketing", "Finance"];
-
-  const upcomingEvents = [1, 2, 3, 4, 5].map(x => {
-    return {
-      id: x,
-      title: `Event Title ${x}`,
-      date: `08/20/2020`,
-      time: `6:00 pm`,
-      committee: committees[Math.floor(Math.random() * committees.length)]
-    }
-  });
+  const upcomingEvents = getUpcomingEvents(5);
 
   return {
     props: {
