@@ -6,7 +6,6 @@ import { VscHome, VscCalendar, VscBell, VscStarEmpty, VscAccount } from "react-i
 
 const CustomMenu = () => {
     const router = useRouter();
-    console.log(`currentPath ${router.pathname}`);
     return (
         <SideNav
             onSelect={(selected) => {
